@@ -31,8 +31,14 @@ module.exports = (sequelize, DataTypes) => {
           msg: '"Author" is required.'
         }
     },
-    genre: DataTypes.STRING,
-    year: DataTypes.INTEGER
+    genre: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    year: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    } 
   }
   }, {
     sequelize,

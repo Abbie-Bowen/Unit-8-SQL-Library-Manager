@@ -3,19 +3,17 @@ extends layout
 block content
   h1 Books
   p 
-    a.button(href='/books/new')
+    a.button(href='/books/new') Create New Book
  
- table
-    th 
-      tr
-        th Title 
-        th Author
-        th Genre 
-        th Year
-      tb  
-        //- each book in books
-        //-   tr
-        //-     th #{book.title}
-        //-     th #{book.author}
-        //-     th #{book.genre}
-        //-     th #{book.year}
+  table
+    tr
+      th Title 
+      th Author
+      th Genre 
+      th Year
+      each book in books
+        tr
+          td #{book.title}
+          td #{book.author}
+          td #{book.genre}
+          td #{book.year}
