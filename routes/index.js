@@ -5,18 +5,23 @@ const Book = require('../models').Book;
 /* GET home page. */
 router.get('/', async(req, res, next)  => {
   try {
-      const book = await Book.create({
-        title: 'Where to Begin',
-        author: 'Cleo Wade',
-        genre: 'poetry',
-        year: '2019',
-      });
       const books = await Book.findAll();
-      res.json(books);
+      res.render('/index', {books: books});
     } catch (error) {
       console.error(error);
     }
-  // res.render('index', { title: 'Express' });
 });
+
+/* GET individual book route */
+router.get('/book/:id', (req, res, next) => {
+  if (req.params.id) {
+    res.render('/update-book', {book: books[req.params.id]})
+  } else {
+    const err = new Error;
+    err.status = 404;
+    err.message = "Sorry, we can't find the book you're looking for.";
+    next(err);
+  }
+})
 
 module.exports = router;
