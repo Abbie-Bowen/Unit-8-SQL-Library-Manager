@@ -33,7 +33,10 @@ app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  res.status(404).render('page-not-found');
+  const err = new Error;
+  err.status = 404;
+  err.message= err.message || "Sorry! We couldn't the page you were looking for.";
+  next(err);
   });
 
 // error handler
@@ -44,11 +47,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   if ( err.status === 404 ) {
-    err.message= err.message || "Sorry! We couldn't the page you were looking for.";
-    res.render('page-not-found', {message: err.message});
+    res.status(404).render('page-not-found', {err});
   } else {
+    console.error(err)
     err.message = err.message || "Sorry! There was an unexpected error on the server.";
-    res.status(err.status || 500).render('error', {message: err.message});
+    res.status(err.status || 500).render('error', {err});
   }
 });
 

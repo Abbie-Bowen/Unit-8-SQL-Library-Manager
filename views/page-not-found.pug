@@ -2,7 +2,8 @@ extends layout
 
 block content 
     h1 Page Not Found 
-    p= message
+    if err
+        p #{err.message}
     |
     |
     |
