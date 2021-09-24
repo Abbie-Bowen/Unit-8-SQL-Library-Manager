@@ -5,7 +5,7 @@ block content
 
     include errors 
     
-    form(method="POST" action="/books")
+    form(method="POST" action="/books/new")
         if book
             p
                 label(for="title") Title 
@@ -36,4 +36,4 @@ block content
         p
             input(type="submit" value="Create New Book")
         p 
-            a.button(href="/books") Cancel
+            a.button(href="/books/page-1") Cancel
